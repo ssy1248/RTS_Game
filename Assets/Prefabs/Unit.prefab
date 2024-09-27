@@ -290,6 +290,7 @@ MonoBehaviour:
   idleStateMaterial: {fileID: 2100000, guid: 955fdbdf12da6ad4aa1a8325c72de065, type: 2}
   followStateMaterial: {fileID: 2100000, guid: 314d7fcb1363de646b10cd792c5befec, type: 2}
   attackStateMaterial: {fileID: 2100000, guid: c0aea13687aaba6419ae625db929d6ca, type: 2}
+  isPlayer: 1
   unitDamage: 10
 --- !u!95 &131560634276418039
 Animator:
