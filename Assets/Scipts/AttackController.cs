@@ -6,15 +6,20 @@ public class AttackController : MonoBehaviour
 {
     public Transform targetToAttack;
 
-    public Material idleStateMaterial;
-    public Material followStateMaterial;
-    public Material attackStateMaterial;
-
     public bool isPlayer;
 
     public int unitDamage;
 
     public GameObject muzzleEffect;
+
+    private void Start()
+    {
+        // Check if muzzleEffect is assigned at the start of the game
+        if (muzzleEffect == null)
+        {
+            Debug.LogWarning("muzzleEffect is not assigned in the Inspector.");
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -38,21 +43,6 @@ public class AttackController : MonoBehaviour
         {
             targetToAttack = null;
         }
-    }
-
-    public void SetIdleMaterial()
-    {
-        //GetComponent<Renderer>().material = idleStateMaterial;
-    }
-
-    public void SetFollowMaterial()
-    {
-        //GetComponent<Renderer>().material = followStateMaterial;
-    }
-
-    public void SetAttackMaterial()
-    {
-        //GetComponent<Renderer>().material = attackStateMaterial;
     }
 
     private void OnDrawGizmos()

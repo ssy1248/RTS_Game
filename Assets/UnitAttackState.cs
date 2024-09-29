@@ -18,7 +18,6 @@ public class UnitAttackState : StateMachineBehaviour
     {
         agent = animator.GetComponent<NavMeshAgent>();
         attackController = animator.GetComponent<AttackController>();
-        attackController.SetAttackMaterial();
 
         if(attackController.muzzleEffect.gameObject != null)
         {
@@ -66,6 +65,8 @@ public class UnitAttackState : StateMachineBehaviour
     {
         var damageToInflict = attackController.unitDamage;
 
+        SoundManager.Instance.PlayInfantryAttackSound();
+
         // Actually Attack Unit
         attackController.targetToAttack.GetComponent<Unit>().TakeDamage(damageToInflict);
     }
@@ -81,6 +82,13 @@ public class UnitAttackState : StateMachineBehaviour
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        attackController.muzzleEffect.gameObject.SetActive(false);
+        if (attackController.muzzleEffect != null && attackController.muzzleEffect.gameObject != null)
+        {
+            attackController.muzzleEffect.gameObject.SetActive(false);
+        }
+        else
+        {
+            Debug.LogWarning("Muzzle Effect is not assigned or is missing on exit.");
+        }
     }
 }
